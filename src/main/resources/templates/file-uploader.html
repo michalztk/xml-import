@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+
+<title>XML Uploader</title>
+</head>
+<body>
+	<h1 class="text-center">XML Uploader</h1>
+	<div th:if="${info}" th:text="${info}" class="alert alert-success"
+		role="alert" />
+	<div th:if="${error}" th:text="${error}" class="alert alert-danger"
+		role="alert" />
+
+	<div id="container" class="px-2">
+		<form method="POST" enctype="multipart/form-data" action="/">
+			<div class="form-group">
+				<label for="fileUploadField">Select file: </label> <input
+					type="file" name="file" class="file" value="Select"
+					id="fileUploadField" accept="text/xml"> <input
+					type="submit" value="Upload" />
+			</div>
+		</form>
+	</div>
+
+	<br />
+
+	<div class="px-2">
+		<table class="table">
+			<thead class="thead-dark">
+				<tr>
+					<th scope="col">Newspaper name</th>
+					<th scope="col">Width</th>
+					<th scope="col">Height</th>
+					<th scope="col">DPI</th>
+					<th scope="col">File name</th>
+					<th scope="col">Upload time</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr data-th-each="request : ${requests}">
+					<td data-th-text="${request.newspaperName}">...</td>
+					<td data-th-text="${request.width}">...</td>
+					<td data-th-text="${request.height}">...</td>
+					<td data-th-text="${request.dpi}">...</td>
+					<td data-th-text="${request.fileName}">...</td>
+					<td data-th-text="${request.uploadTime}">...</td>
+				</tr>
+			<tbody>
+		</table>
+	</div>
+
+</body>
+</html>
